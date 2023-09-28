@@ -1,4 +1,5 @@
 #include "mylib.h"
+#include <fstream>
 
 double vidurkiosk(const vector<int>& pazymiai) {
     int dydis = pazymiai.size();
@@ -40,7 +41,7 @@ void generuoti(studentas &Studentas) {
 }
 
 
-void mano_funkcija() {
+void mano_funkcija(){
     int studsk;
     cout << "Iveskite studentu skaiciu: ";
     while (!(cin >> studsk)) {
@@ -48,33 +49,22 @@ void mano_funkcija() {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Klaida: ivestas ne skaicius. Prasome dar karta ivesti studentu skaiciu." << endl;
     }
-
     studentas Studentas;
-    int skaicius;
-    cout << "Jei norite galutini bala skaiciuti pagal mediana rasykite 1, jei norite pagal mediana rasykite 2:";
-    while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio" << endl;
-    }
     vector<studentas> grupe;
-
     for (int j = 0; j < studsk; j++) {
         cout << "Ivesk varda ir pavarde: ";
         cin >> Studentas.vardas >> Studentas.pavarde;
-
         int ivedimas;
         cout << "Jei norite ivesti pazymius, rasykite 1, jei norite, kad sugeneruotu, rasykite 2: ";
         while (true) {
-        if (cin >> ivedimas && (ivedimas == 1 || ivedimas == 2)) {
-            break;
-        } else {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Praðome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
+            if (cin >> ivedimas && (ivedimas == 1 || ivedimas == 2)) {
+                break;
+            } else {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prašome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
             }
         }
-
         if (ivedimas == 1) {
             cout << "Iveskite pazymius (baigti su -1): ";
             int k;
@@ -85,9 +75,9 @@ void mano_funkcija() {
                     cout << "Klaida: ivestas ne skaicius. Prasome dar karta ivesti pazymi." << endl;
                 }
                 if (k == -1) {
-                break;
+                    break;
                 }
-            Studentas.pazymiai.push_back(k);
+                Studentas.pazymiai.push_back(k);
             }
             int p;
             cout << "Iveskite egzamina: ";
@@ -100,33 +90,32 @@ void mano_funkcija() {
         }else if (ivedimas == 2) {
             generuoti(Studentas);
         }
-
-        if (skaicius == 1) {
-            double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
-            Studentas.rezultatas = galutinis;
-        } else if (skaicius == 2) {
-            double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
-            Studentas.rezultatas = galutinis1;
-        }
-
+        double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
+        Studentas.rezultatas = galutinis;
+        double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
+        Studentas.rezultatas1 = galutinis1;
         grupe.push_back(Studentas);
         Studentas.pazymiai.clear();
     }
-
-    if (skaicius == 1) {
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)"  << endl;
-        cout << string(55, '-') << endl;
-        for (auto& a : grupe) {
-            cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
+    int skaicius;
+    cout << "Jei norite galutini bala skaiciuti pagal mediana rasykite 1, jei norite pagal vidurki rasykite 2:";
+    while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio" << endl;
+    }
+    cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)" << endl;
+    cout << string(55, '-') << endl;
+    for (const auto& a : grupe) {
+        cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
+        if (skaicius == 1) {
             cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
-        }
-    } else if (skaicius == 2) {
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)"<< endl;
-        cout << string(55, '-') << endl;
-        for (auto& a : grupe) {
-            cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-            cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
+        } else if (skaicius == 2) {
+            cout << fixed << setprecision(2) << setw(15) << a.rezultatas1 << endl;
         }
     }
 }
+
+
+
 
