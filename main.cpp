@@ -7,3 +7,7 @@ int main(){
     mano_funkcija();
     return 0;
 }
+
+
+
+
