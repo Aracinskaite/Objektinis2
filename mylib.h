@@ -35,7 +35,7 @@ struct studentas {
 
 void mano_funkcija();
 void mano_funkcija1();
-void spauzdinimasstud(int skaicius);
+
 
 
 #endif
