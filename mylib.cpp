@@ -1,4 +1,4 @@
-﻿#include "mylib.h"
+#include "mylib.h"
 
 double vidurkiosk(const vector<int>& pazymiai) {
     int dydis = pazymiai.size();
@@ -15,55 +15,82 @@ double vidurkiosk(const vector<int>& pazymiai) {
 double medianossk(const vector<int>& pazymiai) {
     vector<int> surusiuota = pazymiai;
     sort(surusiuota.begin(), surusiuota.end());
-
     int dydis = surusiuota.size();
     if (dydis % 2 == 0) {
         int vid1 = surusiuota[dydis / 2 - 1];
         int vid2 = surusiuota[dydis / 2];
         return static_cast<double>(vid1 + vid2) / 2.0;
-    }
-    else {
+    } else {
         return static_cast<double>(surusiuota[dydis / 2]);
     }
 }
 
+void generuoti(studentas &Studentas) {
+    int ndskaicius = rand() % 11;
+    cout << "Pazymiai: ";
+    for (int i = 0; i < ndskaicius; i++) {
+        int pazymys = rand() % 11;
+        cout << pazymys<< " ";
+        Studentas.pazymiai.push_back(pazymys);
+    }
+    cout << endl;
+    Studentas.egzaminas = rand() % 11;
+    cout << "Egzamino pazymys: "<< Studentas.egzaminas<<endl;
+
+}
 
 
 void mano_funkcija() {
     int studsk;
     cout << "Iveskite studentu skaiciu: ";
-    cin >> studsk;
+    while (!(cin >> studsk)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius. Prasome dar karta ivesti studentu skaiciu." << endl;
+    }
+
     studentas Studentas;
-    string zodis;
-    cout << "Iveskite, galutini norite skaiciuoti su mediana ar vidurkiu :";
-    cin >> zodis;
+    int skaicius;
+    cout << "Jei norite galutini bala skaiciuti pagal mediana rasykite 1, jei norite pagal mediana rasykite 2:";
+    while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio" << endl;
+    }
     vector<studentas> grupe;
 
     for (int j = 0; j < studsk; j++) {
         cout << "Ivesk varda ir pavarde: ";
         cin >> Studentas.vardas >> Studentas.pavarde;
 
-        cout << "Kiek studentas tures pazymiu: ";
-        int n;
+        int ivedimas;
+        cout << "Jei norite ivesti pazymius, rasykite 1, jei norite, kad sugeneruotu, rasykite 2: ";
+while (true) {
+    if (cin >> ivedimas && (ivedimas == 1 || ivedimas == 2)) {
+        break; // Exit the loop if ivedimas is 1 or 2
+    } else {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Pra�ome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
+    }
+}
 
-        cin >> n;
-        for (int i = 0; i < n; i++) {
+        if (ivedimas == 1){
+            cout << "Iveskite pazymi (baigti su -1): ";
             int k;
-            cout << "Iveskite " << i + 1 << " pazymi: ";
-            cin >> k;
-            Studentas.pazymiai.push_back(k);
-        }
+            while (cin >> k && k != -1 ) {
+                Studentas.pazymiai.push_back(k);
+            }
+            cout << "Iveskite egzamina: ";
+            cin >> Studentas.egzaminas;
+        }else if (ivedimas == 2) {
+            generuoti(Studentas);
+            }
 
-        cout << "Iveskite egzamina: ";
-        cin >> Studentas.egzaminas;
-
-
-
-        if (zodis == "mediana") {
+        if (skaicius == 1) {
             double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
             Studentas.rezultatas = galutinis;
-        }
-        else if (zodis == "vidurkiu") {
+        } else if (skaicius == 2) {
             double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
             Studentas.rezultatas = galutinis1;
         }
@@ -72,22 +99,20 @@ void mano_funkcija() {
         Studentas.pazymiai.clear();
     }
 
-    if (zodis == "mediana") {
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavardë" << setw(15) << "Galutinis (Med.)" << endl;
+    if (skaicius == 1) {
+    cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)"  << endl;
+    cout << string(55, '-') << endl;
+    for (auto& a : grupe) {
+        cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
+        cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
+        }
+    } else if (skaicius == 2) {
+        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)"<< endl;
         cout << string(55, '-') << endl;
         for (auto& a : grupe) {
             cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
             cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
         }
     }
-    else if (zodis == "vidurki") {
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavardë" << setw(15) << "Galutinis (Vid.)" << endl;
-        cout << string(55, '-') << endl;
-        for (auto& a : grupe) {
-            cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-            cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
-        }
-    }
-
-
 }
+
