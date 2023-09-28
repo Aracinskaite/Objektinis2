@@ -1,3 +1,18 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using std::cout;
+using std::cin;
+using std::endl;
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using std::cout;
+using std::cin;
 using std::endl;
 using std::string;
 using std::vector;
@@ -16,3 +31,4 @@ struct studentas {
 
 
 void mano_funkcija();
+

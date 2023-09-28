@@ -3,6 +3,7 @@
 using namespace std;
 
 int main() {
-    mano_funkcija();
 
+    mano_funkcija();
+    return 0;
 }
