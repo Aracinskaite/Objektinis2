@@ -65,27 +65,41 @@ void mano_funkcija() {
 
         int ivedimas;
         cout << "Jei norite ivesti pazymius, rasykite 1, jei norite, kad sugeneruotu, rasykite 2: ";
-while (true) {
-    if (cin >> ivedimas && (ivedimas == 1 || ivedimas == 2)) {
-        break; // Exit the loop if ivedimas is 1 or 2
-    } else {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Praðome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
-    }
-}
-
-        if (ivedimas == 1){
-            cout << "Iveskite pazymi (baigti su -1): ";
-            int k;
-            while (cin >> k && k != -1 ) {
-                Studentas.pazymiai.push_back(k);
+        while (true) {
+        if (cin >> ivedimas && (ivedimas == 1 || ivedimas == 2)) {
+            break;
+        } else {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Praðome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
             }
+        }
+
+        if (ivedimas == 1) {
+            cout << "Iveskite pazymius (baigti su -1): ";
+            int k;
+            while (true) {
+                while (!(cin >> k)) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Klaida: ivestas ne skaicius. Prasome dar karta ivesti pazymi." << endl;
+                }
+                if (k == -1) {
+                break;
+                }
+            Studentas.pazymiai.push_back(k);
+            }
+            int p;
             cout << "Iveskite egzamina: ";
-            cin >> Studentas.egzaminas;
+            while (!(cin >> p)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Klaida: ivestas ne skaicius. Prasome dar karta ivesti egzamino pazymi." << endl;
+            }
+            Studentas.egzaminas = p;
         }else if (ivedimas == 2) {
             generuoti(Studentas);
-            }
+        }
 
         if (skaicius == 1) {
             double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
@@ -100,11 +114,11 @@ while (true) {
     }
 
     if (skaicius == 1) {
-    cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)"  << endl;
-    cout << string(55, '-') << endl;
-    for (auto& a : grupe) {
-        cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-        cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
+        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)"  << endl;
+        cout << string(55, '-') << endl;
+        for (auto& a : grupe) {
+            cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
+            cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
         }
     } else if (skaicius == 2) {
         cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)"<< endl;
