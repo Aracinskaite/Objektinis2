@@ -43,11 +43,20 @@ void generuoti(studentas &Studentas) {
 void mano_funkcija() {
     int studsk;
     cout << "Iveskite studentu skaiciu: ";
-    cin >> studsk;
+    while (!(cin >> studsk)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius. Prasome dar karta ávesti studentu skaiciu." << endl;
+    }
+
     studentas Studentas;
     int skaicius;
     cout << "Jei norite galutini bala skaiciuti pagal mediana rasykite 1, jei norite pagal mediana rasykite 2:";
-    cin >> skaicius;
+    while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio" << endl;
+    }
     vector<studentas> grupe;
 
     for (int j = 0; j < studsk; j++) {
@@ -55,8 +64,17 @@ void mano_funkcija() {
         cin >> Studentas.vardas >> Studentas.pavarde;
 
         int ivedimas;
-        cout << "Jei norite ivesti pazymius  rasykite 1, jei norite, kad sugeneruotu rasykite 2:";
-        cin >> ivedimas;
+        cout << "Jei norite ivesti pazymius, rasykite 1, jei norite, kad sugeneruotu, rasykite 2: ";
+while (true) {
+    if (cin >> ivedimas && (ivedimas == 1 || ivedimas == 2)) {
+        break; // Exit the loop if ivedimas is 1 or 2
+    } else {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Praðome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
+    }
+}
+
         if (ivedimas == 1){
             cout << "Iveskite pazymi (baigti su -1): ";
             int k;
@@ -88,7 +106,7 @@ void mano_funkcija() {
         cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
         cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
         }
-    } else if (skaicius == 1) {
+    } else if (skaicius == 2) {
         cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)"<< endl;
         cout << string(55, '-') << endl;
         for (auto& a : grupe) {
