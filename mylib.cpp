@@ -120,21 +120,31 @@ void mano_funkcija() {
                 grupe.push_back(Studentas);
                 Studentas.pazymiai.clear();
             }
-        if (skait == 1) {
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)"  << endl;
-        cout << string(55, '-') << endl;
-        for (auto& a : grupe) {
-            cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-            cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
+
+            sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+                if (a.vardas != b.vardas) {
+                    return a.vardas < b.vardas;
+                } else {
+                    return a.pavarde < b.pavarde;
+                }
+            });
+
+            if (skait == 1) {
+                cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)" << endl;
+                cout << string(55, '-') << endl;
+                for (auto& a : grupe) {
+                    cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
+                    cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
+                }
+            } else if (skaicius == 2) {
+                cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)" << endl;
+                cout << string(55, '-') << endl;
+                for (auto& a : grupe) {
+                    cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
+                    cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
+                }
             }
-        } else if (skaicius == 2) {
-            cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)"<< endl;
-            cout << string(55, '-') << endl;
-            for (auto& a : grupe) {
-                cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-                cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
-            }
-        }
+
 
     }else if (skait==2){
         vector<studentas> grupe;
@@ -173,12 +183,12 @@ void mano_funkcija() {
             }
         });
 
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (Vid.)"<<setw(20) << "Galutinis (Med.)"  << endl;
-        cout << string(70, '-') << endl;
+        cout << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(20) << "Galutinis (Vid.)"<< left << setw(20) << "Galutinis (Med.)"  << endl;
+        cout << string(80, '-') << endl;
         for (auto& a : grupe) {
-            cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-            cout << fixed << setprecision(2) << setw(20) << a.rezultatas1;
-            cout << fixed << setprecision(2) << setw(20) << a.rezultatas << endl;
+            cout << left << setw(20) << a.vardas << left << setw(20) << a.pavarde;
+            cout << left << fixed << setprecision(2) << setw(20) << a.rezultatas1;
+            cout << left << fixed << setprecision(2) << setw(20) << a.rezultatas << endl;
         }
     }
 
