@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <fstream> // Include the <fstream> header
 
 using std::cout;
 using std::cin;
@@ -21,12 +20,18 @@ using std::setprecision;
 using std::ifstream;
 using std::cerr;
 using std::stringstream;
+using std::setprecision;
+using std::numeric_limits;
+using std::streamsize;
+using std::cerr;
+
 
 struct studentas {
     string vardas, pavarde;
     vector<int> pazymiai;
     int egzaminas;
     float rezultatas;
+    float rezultatas1;
 };
 
 void mano_funkcija();
