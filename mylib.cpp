@@ -165,12 +165,20 @@ void mano_funkcija() {
             grupe.push_back(Studentas);
         }
 
+        sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+            if (a.vardas != b.vardas) {
+                return a.vardas < b.vardas;
+            } else {
+                return a.pavarde < b.pavarde;
+            }
+        });
+
         cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (Vid.)"<<setw(20) << "Galutinis (Med.)"  << endl;
         cout << string(70, '-') << endl;
         for (auto& a : grupe) {
             cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-            cout << fixed << setprecision(2) << setw(15) << a.rezultatas1;
-            cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
+            cout << fixed << setprecision(2) << setw(20) << a.rezultatas1;
+            cout << fixed << setprecision(2) << setw(20) << a.rezultatas << endl;
         }
     }
 
