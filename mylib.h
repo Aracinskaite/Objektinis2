@@ -25,7 +25,6 @@ using std::numeric_limits;
 using std::streamsize;
 using std::cerr;
 
-
 struct studentas {
     string vardas, pavarde;
     vector<int> pazymiai;
@@ -35,6 +34,8 @@ struct studentas {
 };
 
 void mano_funkcija();
+void mano_funkcija1();
+void spauzdinimasstud(int skaicius);
 
-#endif // MYLIB_H
 
+#endif
