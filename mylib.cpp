@@ -1,12 +1,10 @@
 #include "mylib.h"
-#include <fstream>
+
 
 double vidurkiosk(const vector<int>& pazymiai) {
+    assert(!pazymiai.empty());
     int dydis = pazymiai.size();
-    if (dydis == 0) {
-        return 0.0;
-    }
-    int sum;
+    int sum = 0;
     for (int num : pazymiai) {
         sum += num;
     }
@@ -14,6 +12,7 @@ double vidurkiosk(const vector<int>& pazymiai) {
 }
 
 double medianossk(const vector<int>& pazymiai) {
+    assert(!pazymiai.empty());
     vector<int> surusiuota = pazymiai;
     sort(surusiuota.begin(), surusiuota.end());
     int dydis = surusiuota.size();
@@ -41,24 +40,28 @@ void generuoti(studentas &Studentas) {
 }
 
 void mano_funkcija1() {
+    string failopavadinimas;
+    cout << "Iveskite  savo failo pavadinima:";
+    cin >> failopavadinimas;
+
     vector<studentas> grupe;
-    ifstream kursiokaitxt("C:\\Users\\araci\\OneDrive\\Desktop\\c++\\100000.txt");
-    if (!kursiokaitxt.is_open()) {
-        cerr << "Error opening the file." << endl;
-        return;
+    ifstream failas(failopavadinimas);
+
+    if (!failas.is_open()) {
+        cerr << "Failo atidaryti nepavyko" << endl;
     }
-    string line;
-    getline(kursiokaitxt, line);
-    stringstream line_stream(line);
-    string element;
+    string eilute;
+    getline(failas, eilute);
+    stringstream eilute1(eilute);
+    string elem;
     int num = 0;
-    while (line_stream >> element) {
+    while (eilute1 >> elem) {
         num++;
     }
     num = num-3;
-    while (getline(kursiokaitxt, line)) {
+    while (getline(failas, eilute)) {
         studentas Studentas;
-        stringstream ss(line);
+        stringstream ss(eilute);
         ss >> Studentas.vardas >> Studentas.pavarde;
         for (int i = 1; i <= num; i++) {
             int pazymys;
@@ -111,7 +114,7 @@ void mano_funkcija(){
             } else {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prašome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
+                cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. PraÅ¡ome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
             }
         }
         if (ivedimas == 1) {
@@ -164,7 +167,3 @@ void mano_funkcija(){
         }
     }
 }
-
-
-
-

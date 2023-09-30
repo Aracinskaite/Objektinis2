@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <fstream>
+#include <cassert>
 
 using std::cout;
 using std::cin;
@@ -35,7 +37,6 @@ struct studentas {
 
 void mano_funkcija();
 void mano_funkcija1();
-
 
 
 #endif
