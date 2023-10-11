@@ -42,8 +42,6 @@ void studFailas(int sarasas);
 void nuskaitymas(vector<studentas>& grupe, int sarasas);
 void isvedimas(const vector<studentas>& grupe, const string& filename, int skaicius);
 void surusiuoti(const vector<studentas>& grupe, int skaicius, vector<studentas>& vargsiukai, vector<studentas>& galvociai);
-studentas GeneruotiStudentai() ;
-
-
+studentas GeneruotiStudentai(int& numeris) ;
 
 #endif;

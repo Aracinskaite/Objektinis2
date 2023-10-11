@@ -20,14 +20,14 @@ int main() {
     }
 
     for (int i = 0; i < sarasas.size(); i++) {
+        grupe.clear();
+        vargsiukai.clear();
+        galvociai.clear();
         studFailas(sarasas[i]);
 
         Timer t;
         nuskaitymas(grupe, (sarasas[i]));
         double z = t.elapsed();
-
-        vector<studentas> vargsiukai;
-        vector<studentas> galvociai;
 
         Timer1 t1;
         surusiuoti(grupe, skaicius, vargsiukai, galvociai);

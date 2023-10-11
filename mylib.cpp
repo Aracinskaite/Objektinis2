@@ -63,8 +63,8 @@ void surusiuoti(const vector<studentas>& grupe, int skaicius, vector<studentas>&
         } else {
             galvociai.push_back(a);
         }
-    }
-}
+}}
+
 
 
 
@@ -95,46 +95,35 @@ void isvedimas(const vector<studentas>& grupe, const string& failas, int skaiciu
     output.close();
 }
 
-studentas GeneruotiStudentai() {
-    studentas Studentas;
-    static int numeris = 1;
-    Studentas.vardas = "Vardas" + std::to_string(numeris);
-    Studentas.pavarde = "Pavarde" + std::to_string(numeris);
-    int pazymiuSkaicius = 10;
-    for (int i = 0; i < pazymiuSkaicius; i++) {
-        Studentas.pazymiai.push_back(rand() % 10 + 1);
-    }
-    Studentas.egzaminas = rand() % 10 + 1;
-
-    numeris++;
-    return Studentas;
-}
-
 
 
 void studFailas(int sarasas) {
+    int numeris = 1;
     ofstream kuriamasFailas(std::to_string(sarasas) + ".txt");
     if (!kuriamasFailas) {
         cerr << "Failed to create the file." << endl;
         return;
     }
-    srand(time(nullptr));
     kuriamasFailas << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
     for (int a = 1; a <= 10; a++) {
         kuriamasFailas << left << setw(5) << "ND" + std::to_string(a);
     }
     kuriamasFailas << left << setw(10) << "Egzaminas" << endl;
 
-    for (int i = 0; i < sarasas; i++) {
-        studentas Studentas = GeneruotiStudentai();
-        kuriamasFailas << left << setw(20) << Studentas.vardas << setw(20) << Studentas.pavarde;
+    for (int i = 1; i <= sarasas; ++i) {
+        string vardas = "Vardas" + std::to_string(i);
+        string pavarde = "Pavarde" + std::to_string(i);
 
-        for (int j = 0; j < Studentas.pazymiai.size(); j++) {
-            kuriamasFailas << left << setw(5) << Studentas.pazymiai[j];
+        kuriamasFailas << left << setw(20) << vardas << setw(20) << pavarde;
+
+        for (int j = 0; j < 10; ++j) {
+            kuriamasFailas << setw(5) << rand() % 11;
         }
 
-        kuriamasFailas << left << setw(10) << Studentas.egzaminas;
-        kuriamasFailas << endl;
+        kuriamasFailas << setw(10) << rand() % 11 << endl;
     }
+
     kuriamasFailas.close();
 }
+
+
