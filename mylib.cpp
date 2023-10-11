@@ -1,5 +1,5 @@
 #include "mylib.h"
-
+#include "timer.h"
 
 double vidurkiosk(const vector<int>& pazymiai) {
     assert(!pazymiai.empty());
@@ -59,10 +59,7 @@ void nuskaitymas(vector<studentas>& grupe) {
     }
 }
 
-void surusiuoti(const vector<studentas>& grupe, int skaicius) {
-    vector<studentas> vargsiukai;
-    vector<studentas> galvociai;
-
+void surusiuoti(const vector<studentas>& grupe, int skaicius, vector<studentas>& vargsiukai, vector<studentas>& galvociai) {
     for (const auto& a : grupe) {
         if (a.rezultatas < 5.0) {
             vargsiukai.push_back(a);
@@ -70,9 +67,8 @@ void surusiuoti(const vector<studentas>& grupe, int skaicius) {
             galvociai.push_back(a);
         }
     }
-    isvedimas(vargsiukai, "vargsiukai.txt", skaicius);
-    isvedimas(galvociai, "galvociai.txt", skaicius);
 }
+
 
 
 
