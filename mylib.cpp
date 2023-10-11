@@ -28,42 +28,36 @@ double medianossk(const vector<int>& pazymiai) {
 
 void nuskaitymas(vector<studentas>& grupe) {
     string failopavadinimas;
-    cout << "Iveskite  savo failo pavadinima:";
+    cout << "Iveskite savo failo pavadinima:";
     cin >> failopavadinimas;
-
 
     ifstream failas(failopavadinimas);
 
     if (!failas.is_open()) {
         cerr << "Failo atidaryti nepavyko" << endl;
     }
+
+
     string eilute;
-    getline(failas, eilute);
-    stringstream eilute1(eilute);
-    string elem;
-    int num = 0;
-    while (eilute1 >> elem) {
-        num++;
-    }
-    num = num-3;
     while (getline(failas, eilute)) {
         studentas Studentas;
         stringstream ss(eilute);
         ss >> Studentas.vardas >> Studentas.pavarde;
-        for (int i = 1; i <= num; i++) {
+        for (int i = 0; i < 10; i++) {
             int pazymys;
             if (ss >> pazymys) {
                 Studentas.pazymiai.push_back(pazymys);
             }
         }
         ss >> Studentas.egzaminas;
+
         double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas = galutinis;
         double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas1 = galutinis1;
         grupe.push_back(Studentas);
-    }}
-
+    }
+}
 
 void surusiuoti(const vector<studentas>& grupe, int skaicius) {
     vector<studentas> vargsiukai;
@@ -115,7 +109,7 @@ studentas GeneruotiStudentai() {
     static int numeris = 1;
     Studentas.vardas = "Vardas" + std::to_string(numeris);
     Studentas.pavarde = "Pavarde" + std::to_string(numeris);
-    int pazymiuSkaicius = rand() % 11;
+    int pazymiuSkaicius = 10;
     for (int i = 0; i < pazymiuSkaicius; i++) {
         Studentas.pazymiai.push_back(rand() % 10 + 1);
     }
@@ -135,6 +129,7 @@ void studFailas(int sarasas) {
     }
 
     srand(time(nullptr));
+
 
     for (int i = 0; i < sarasas; i++) {
         studentas Studentas = GeneruotiStudentai();
