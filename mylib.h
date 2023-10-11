@@ -35,8 +35,8 @@ struct studentas {
     float rezultatas1;
 };
 
-void mano_funkcija();
-void mano_funkcija1();
 
+void nuskaitymas(vector<studentas>& grupe);
+void isvedimas(const vector<studentas>& grupe);
 
-#endif
+#endif;
