@@ -26,19 +26,15 @@ double medianossk(const vector<int>& pazymiai) {
 }
 
 
-void nuskaitymas(vector<studentas>& grupe) {
-    string failopavadinimas;
-    cout << "Iveskite savo failo pavadinima:";
-    cin >> failopavadinimas;
-
+void nuskaitymas(vector<studentas>& grupe, int sarasas) {
+    string failopavadinimas = std::to_string(sarasas) + ".txt";
     ifstream failas(failopavadinimas);
-
     if (!failas.is_open()) {
         cerr << "Failo atidaryti nepavyko" << endl;
+        return;
     }
     string eilute;
     getline(failas, eilute);
-
     while (getline(failas, eilute)) {
         studentas Studentas;
         stringstream ss(eilute);
@@ -59,6 +55,7 @@ void nuskaitymas(vector<studentas>& grupe) {
     }
 }
 
+
 void surusiuoti(const vector<studentas>& grupe, int skaicius, vector<studentas>& vargsiukai, vector<studentas>& galvociai) {
     for (const auto& a : grupe) {
         if (a.rezultatas < 5.0) {
@@ -74,7 +71,6 @@ void surusiuoti(const vector<studentas>& grupe, int skaicius, vector<studentas>&
 
 void isvedimas(const vector<studentas>& grupe, const string& failas, int skaicius) {
     ofstream output(failas);
-
     if (!output.is_open()) {
         cerr << "Failed to open output file: " << failas << endl;
         return;
@@ -96,7 +92,6 @@ void isvedimas(const vector<studentas>& grupe, const string& failas, int skaiciu
             output << fixed << setprecision(2) << setw(15) << a.rezultatas1 << endl;
         }
     }
-
     output.close();
 }
 
@@ -123,9 +118,7 @@ void studFailas(int sarasas) {
         cerr << "Failed to create the file." << endl;
         return;
     }
-
     srand(time(nullptr));
-
     kuriamasFailas << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
     for (int a = 1; a <= 10; a++) {
         kuriamasFailas << left << setw(5) << "ND" + std::to_string(a);
@@ -141,10 +134,7 @@ void studFailas(int sarasas) {
         }
 
         kuriamasFailas << left << setw(10) << Studentas.egzaminas;
-
         kuriamasFailas << endl;
     }
-
     kuriamasFailas.close();
 }
-

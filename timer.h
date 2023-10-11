@@ -1,5 +1,5 @@
-#ifndef TIMER_H_INCLUDED
-#define TIMER_H_INCLUDED
+#ifndef TIMER_H
+#define TIMER_H
 
 #include <iostream>
 #include <chrono>
@@ -18,6 +18,7 @@ class Timer {
 (std::chrono::high_resolution_clock::now() - start).count();
   }
 };
+
 
 class Timer1 {
   private:
