@@ -6,8 +6,11 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <fstream>
 #include <cassert>
+#include <fstream>
+#include <sstream>
+#include <ctime>
+#include <string>
 
 using std::cout;
 using std::cin;
@@ -26,6 +29,7 @@ using std::setprecision;
 using std::numeric_limits;
 using std::streamsize;
 using std::cerr;
+using std::ofstream;
 
 struct studentas {
     string vardas, pavarde;
@@ -34,9 +38,12 @@ struct studentas {
     float rezultatas;
     float rezultatas1;
 };
-
-
+void studFailas(int sarasas);
 void nuskaitymas(vector<studentas>& grupe);
-void isvedimas(const vector<studentas>& grupe);
+void isvedimas(const vector<studentas>& grupe, const string& filename, int skaicius);
+void surusiuoti(const vector<studentas>& grupe, int skaicius);
+studentas GeneruotiStudentai() ;
+
+
 
 #endif;
