@@ -1,4 +1,4 @@
- #ifndef MYLIB_H
+#ifndef MYLIB_H
 #define MYLIB_H
 
 #include <iostream>

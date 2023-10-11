@@ -36,9 +36,9 @@ void nuskaitymas(vector<studentas>& grupe) {
     if (!failas.is_open()) {
         cerr << "Failo atidaryti nepavyko" << endl;
     }
-
-
     string eilute;
+    getline(failas, eilute);
+
     while (getline(failas, eilute)) {
         studentas Studentas;
         stringstream ss(eilute);
@@ -126,19 +126,25 @@ void studFailas(int sarasas) {
 
     srand(time(nullptr));
 
+    kuriamasFailas << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
+    for (int a = 1; a <= 10; a++) {
+        kuriamasFailas << left << setw(5) << "ND" + std::to_string(a);
+    }
+    kuriamasFailas << left << setw(10) << "Egzaminas" << endl;
 
     for (int i = 0; i < sarasas; i++) {
         studentas Studentas = GeneruotiStudentai();
-        kuriamasFailas << Studentas.vardas << " " << Studentas.pavarde << " " ;
+        kuriamasFailas << left << setw(20) << Studentas.vardas << setw(20) << Studentas.pavarde;
 
         for (int j = 0; j < Studentas.pazymiai.size(); j++) {
-            kuriamasFailas  << Studentas.pazymiai[j] << " ";
+            kuriamasFailas << left << setw(5) << Studentas.pazymiai[j];
         }
 
-        kuriamasFailas << Studentas.egzaminas;
+        kuriamasFailas << left << setw(10) << Studentas.egzaminas;
 
         kuriamasFailas << endl;
     }
 
     kuriamasFailas.close();
 }
+
