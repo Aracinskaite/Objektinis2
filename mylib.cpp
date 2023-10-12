@@ -56,7 +56,7 @@ void nuskaitymas(vector<studentas>& grupe, int sarasas) {
 }
 
 
-void surusiuoti(const vector<studentas>& grupe, int skaicius, vector<studentas>& vargsiukai, vector<studentas>& galvociai) {
+void surusiuoti(const vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai) {
     for (const auto& a : grupe) {
         if (a.rezultatas < 5.0) {
             vargsiukai.push_back(a);

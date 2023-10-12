@@ -23,14 +23,18 @@ int main() {
         grupe.clear();
         vargsiukai.clear();
         galvociai.clear();
+
+        Timer4 t4;
+        Timer5 t5;
         studFailas(sarasas[i]);
+        double z4 = t4.elapsed();
 
         Timer t;
         nuskaitymas(grupe, (sarasas[i]));
         double z = t.elapsed();
 
         Timer1 t1;
-        surusiuoti(grupe, skaicius, vargsiukai, galvociai);
+        surusiuoti(grupe, vargsiukai, galvociai);
         double z1 = t1.elapsed();
 
         Timer2 t2;
@@ -41,14 +45,17 @@ int main() {
         isvedimas(galvociai, "galvociai_" + to_string(sarasas[i]) + ".txt", skaicius);
         double z3 = t3.elapsed();
 
+        double z5 = t5.elapsed();
+
         cout << "\n";
-        cout << sarasas[i] << " studentu nuskaityti uztruko: " << fixed << setprecision(2) << (z = t.elapsed()) << " s\n";
-        cout << sarasas[i] << " studentu dalijimas i dvi grupes laikas: " << fixed << setprecision(2) << (z1 = t1.elapsed()) << " s\n";
-        cout << sarasas[i] << " irasu 'vargsiukai' irasymo i faila laikas: " << fixed << setprecision(2) << (z2 = t2.elapsed()) << " s\n";
-        cout << sarasas[i] << " irasu 'galvociai' irasymo i faila laikas: " << fixed << setprecision(2) << (z3 = t3.elapsed()) << " s\n";
-
+        cout << sarasas[i] << " studentu sugeneruoti uztruko: " << fixed << setprecision(2) << (z4) << " s\n";
+        cout << sarasas[i] << " studentu nuskaityti uztruko: " << fixed << setprecision(2) << (z) << " s\n";
+        cout << sarasas[i] << " studentu dalijimas i dvi grupes laikas: " << fixed << setprecision(2) << (z1) << " s\n";
+        cout << sarasas[i] << " irasu 'vargsiukai' irasymo i faila laikas: " << fixed << setprecision(2) << (z2) << " s\n";
+        cout << sarasas[i] << " irasu 'galvociai' irasymo i faila laikas: " << fixed << setprecision(2) << (z3) << " s\n";
+        cout << "\n";
+        cout << right << setw(15) << sarasas[i] << " irasu testo laikas: " << left << fixed << setprecision(2) << (z5) << " s\n";
     }
-
     system("pause");
     return 0;
 }
