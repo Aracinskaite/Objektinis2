@@ -38,10 +38,15 @@ struct studentas {
     float rezultatas;
     float rezultatas1;
 };
+
+void mano_funkcija();
+void mano_funkcija1();
+
 void studFailas(int sarasas);
 void nuskaitymas(vector<studentas>& grupe, int sarasas);
 void isvedimas(const vector<studentas>& grupe, const string& filename, int skaicius);
 void surusiuoti(const vector<studentas>& grupe,  vector<studentas>& vargsiukai, vector<studentas>& galvociai);
 studentas GeneruotiStudentai(int& numeris) ;
+void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, double z, int testsk, int sarasas);
 
 #endif;

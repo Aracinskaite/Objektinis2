@@ -5,56 +5,91 @@
 using namespace std;
 
 int main() {
-    vector<int> sarasas = {1000, 10000, 100000, 1000000, 10000000};
-    vector<studentas> grupe;
-    vector<studentas> vargsiukai;
-    vector<studentas> galvociai;
-
-    int skaicius;
-
-    cout << "Jei norite galutini bala skaiciuoti pagal mediana rasykite 1, jei norite pagal vidurki rasykite 2: ";
-    while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
+    int skait;
+    cout << "Jei norite ivesti studentus ir atlikti veiksums, rasykite 1." << endl;
+    cout << "Jei norite nuskaityti studentus, rasykite 2." << endl;
+    cout << "Jei norite norite sugeneruoti failus ir atlikus veiksmus su jais paskaiciuoti vidutini laika. Rasykite 3." << endl;
+    while (!(cin >> skait) || (skait != 1 && skait != 2 && skait != 3)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio: ";
+        cout << "Klaida: ivestas ne skaicius. Iveskite 1 - jei norite ivesti studentus ir atlikti veiksums , 2 - jei norite nuskaityti studentus rasykite :" << endl;
     }
+    if (skait == 1) {
+        mano_funkcija();
 
-    for (int i = 0; i < sarasas.size(); i++) {
-        grupe.clear();
-        vargsiukai.clear();
-        galvociai.clear();
+    } else if (skait == 2) {
+        mano_funkcija1();
+    }else if  (skait == 3) {
 
-        Timer4 t4;
-        Timer5 t5;
-        studFailas(sarasas[i]);
-        double z4 = t4.elapsed();
+        vector<int> sarasas = {1000, 10000, 100000, 1000000, 10000000};
+        vector<studentas> grupe;
+        vector<studentas> vargsiukai;
+        vector<studentas> galvociai;
+        int skaicius;
 
-        Timer t;
-        nuskaitymas(grupe, (sarasas[i]));
-        double z = t.elapsed();
+        cout << "Jei norite galutini bala skaiciuoti pagal mediana rasykite 1, jei norite pagal vidurki rasykite 2: ";
+        while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio: ";
+        }
 
-        Timer1 t1;
-        surusiuoti(grupe, vargsiukai, galvociai);
-        double z1 = t1.elapsed();
+        int testsk;
+        cout << "Kiek kartu noresite daryti laiko testavaima :";
+        while (!(cin >> testsk)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klaida: ivestas ne skaicius. Iveskite kiek kartu noresite daryti laiko testavaima : ";
+        }
 
-        Timer2 t2;
-        isvedimas(vargsiukai, "vargsiukai_" + to_string(sarasas[i]) + ".txt", skaicius);
-        double z2 = t2.elapsed();
+        for (int i = 0; i < sarasas.size(); i++) {
+            cout << "\n";
+            cout << right << setw(20) <<"Darbas su " << left <<sarasas[i] << " generuotais studentais"<< endl;
+            cout << "\n";
+            grupe.clear();
+            vargsiukai.clear();
+            galvociai.clear();
+            double laikas1 = 0.0;
+            double laikas2 = 0.0;
+            double laikas3 = 0.0;
+            double laikas4 = 0.0;
+            double laikas5 = 0.0;
 
-        Timer3 t3;
-        isvedimas(galvociai, "galvociai_" + to_string(sarasas[i]) + ".txt", skaicius);
-        double z3 = t3.elapsed();
+            Timer t;
+            studFailas(sarasas[i]);
+            double z = t.elapsed();
 
-        double z5 = t5.elapsed();
+            for (int j = 0; j < testsk; j++) {
+                grupe.clear();
+                vargsiukai.clear();
+                galvociai.clear();
 
-        cout << "\n";
-        cout << sarasas[i] << " studentu sugeneruoti uztruko: " << fixed << setprecision(2) << (z4) << " s\n";
-        cout << sarasas[i] << " studentu nuskaityti uztruko: " << fixed << setprecision(2) << (z) << " s\n";
-        cout << sarasas[i] << " studentu dalijimas i dvi grupes laikas: " << fixed << setprecision(2) << (z1) << " s\n";
-        cout << sarasas[i] << " irasu 'vargsiukai' irasymo i faila laikas: " << fixed << setprecision(2) << (z2) << " s\n";
-        cout << sarasas[i] << " irasu 'galvociai' irasymo i faila laikas: " << fixed << setprecision(2) << (z3) << " s\n";
-        cout << "\n";
-        cout << right << setw(15) << sarasas[i] << " irasu testo laikas: " << left << fixed << setprecision(2) << (z5) << " s\n";
+                Timer2 t2;
+                Timer1 t1;
+                nuskaitymas(grupe, (sarasas[i]));
+                double z1 = t1.elapsed();
+                laikas1 += z1;
+
+                Timer1 t3;
+                surusiuoti(grupe, vargsiukai, galvociai);
+                double z3 = t3.elapsed();
+                laikas3 += z3;
+
+                Timer4 t4;
+                isvedimas(vargsiukai, "vargsiukai_" + to_string(sarasas[i]) + "."+ to_string(j) + ".txt", skaicius);
+                double z4 = t4.elapsed();
+                laikas4 += z4;
+
+                Timer5 t5;
+                isvedimas(galvociai, "galvociai_" + to_string(sarasas[i]) + + "."+ to_string(j) + ".txt", skaicius);
+                double z5 = t5.elapsed();
+                laikas5 += z5;
+
+                double z2 = t2.elapsed();
+                laikas2 += z2;
+            }
+            isvedimasLaiko(laikas1, laikas2, laikas3, laikas4, laikas5, z, testsk, sarasas[i]);
+        }
     }
     system("pause");
     return 0;
