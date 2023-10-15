@@ -6,8 +6,8 @@ using namespace std;
 
 int main() {
     int skait;
-    cout << "Jei norite ivesti studentus ir atlikti veiksums, rasykite 1." << endl;
-    cout << "Jei norite nuskaityti studentus, rasykite 2." << endl;
+    cout << "Jei norite ivesti studentus ir atlikti veiksums. Rasykite 1." << endl;
+    cout << "Jei norite nuskaityti studentus. Rasykite 2." << endl;
     cout << "Jei norite norite sugeneruoti failus ir atlikus veiksmus su jais paskaiciuoti vidutini laika. Rasykite 3." << endl;
     while (!(cin >> skait) || (skait != 1 && skait != 2 && skait != 3)) {
         cin.clear();
@@ -35,7 +35,7 @@ int main() {
         }
 
         int testsk;
-        cout << "Kiek kartu noresite daryti laiko testavaima :";
+        cout << "Kiek kartu noresite daryti laiko testavaima: ";
         while (!(cin >> testsk)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
