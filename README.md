@@ -11,11 +11,14 @@ Savo programą išskaidžiau į keturis failus: **main.cpp**, **mylib.cpp**, **m
 **Main.cpp** pradžioje įvedus skaičių 3, galėsime sugeneruoti failus ir atlikus veiksmus su jais, paskaičiuoti vidutinį laiką. Sukūriau vektorių pavadinimu sąrašas, su kurio skaičiais visa programa vėliau ir dirba. Pirmiausia sugeneruoja atsitiktinai skaičius ir įrašo į failą su funkcija *studFailas()*. Tada galima įvesti skaičių, kiek kartu norėsime atlikti laiko testavimą. Iš sugeneruoto failo informacija yra nuskaitoma ir išsaugojama į vektorių studentas, tai vyksta su funkcija *nuskaitymas()*. Vėliau iškviečiu funkcija *surusiuoti()*, kuri studentus suskirsto į du atskirus vektorius pagal jų galutinį balą vidurkį/medianą. Galiausiai du kartus yra vykdoma funkciją *isvedimas()*, kad butu įrašyti vargšiukai ir galvočiai. Visus šiuos veiksmus kartojame tiek kartų, kiek įvedėme laiko testavimo skaičių. Pabaigoje iškviečiame funkcija *isvedimasLaiko()*, kuri paskaičiuoja vidutinį darbo laiką su tam tikra funkcija. Visa tai yra įdėta į for cikla ir vykdoma su 1000, 10000, 100000, 1000000, 10000000.
 
 Laiko skaičiavimas:
-1. **Timer** - paskaičiuoja failų generavimo laiką (funkcija *studFailas()*).
 2. **Timer1** - paskaičiuoja funkcijos *nuskaitymas()* vidutinį darbo laiką.
 3. **Timer2** - paskaičiuoja funkcijos *surusiuoti()* vidutinį darbo laiką.
 4. **Timer3** - paskaičiuoja funkcijos *isvedimas()*  vidutinį darbo laiką (vektoriaus vargsiukai išvedimas į failą).
 5. **Timer4** - paskaičiuoja funkcijos *isvedimas()* vidutinį  darbo laiką (vektoriaus galvociai išvedimas į failą).
 6. **Timer5** - paskaičiuoja vidutini darbo laiką nuo funkcijos *studFailas()* iki paskutinio *isvedimas()*.
+
+<img width="600" alt="Screenshot 2023-10-25 125942" src="https://github.com/Aracinskaite/Objektinis1/assets/144428697/84fbd3d9-bfbb-4a84-af85-b7f108aea54d">
+
+
 
 
