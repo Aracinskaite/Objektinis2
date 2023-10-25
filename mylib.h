@@ -10,9 +10,10 @@
 #include <fstream>
 #include <sstream>
 #include <ctime>
-#include <string>
+#include <list>
 
 using std::cout;
+using std::list;
 using std::cin;
 using std::endl;
 using std::string;
@@ -40,15 +41,15 @@ struct studentas {
     float rezultatas1;
 };
 
+
 void mano_funkcija();
 void mano_funkcija1();
 
 void studFailas(int sarasas);
-void nuskaitymas(vector<studentas>& grupe, int sarasas);
-void isvedimas(const vector<studentas>& grupe, const string& filename);
-void surusiuoti(vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai, const string& pagalRusiuoti);
-studentas GeneruotiStudentai(int& numeris) ;
+void nuskaitymas(list<studentas>& grupe, int sarasas);
+void isvedimas(const list<studentas>& grupe, const string& filename);
+void surusiuoti(list<studentas>& grupe, list<studentas>& vargsiukai, list<studentas>& galvociai, const string& pagalRusiuoti);
+studentas GeneruotiStudentai(int& numeris);
 void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, int testsk, int sarasas);
 
 #endif;
-
