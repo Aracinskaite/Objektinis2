@@ -184,7 +184,7 @@ void mano_funkcija(){
 
 }
 
-void nuskaitymas(vector<studentas>& grupe, int sarasas) {
+void nuskaitymas(list<studentas>& grupe, int sarasas) {
     string failopavadinimas = std::to_string(sarasas) + ".txt";
     ifstream failas(failopavadinimas);
     if (!failas.is_open()) {
@@ -199,7 +199,7 @@ void nuskaitymas(vector<studentas>& grupe, int sarasas) {
     while (eilute1 >> elem) {
         num++;
     }
-    num = num-3;
+    num = num - 3;
     while (getline(failas, eilute)) {
         studentas Studentas;
         stringstream ss(eilute);
@@ -212,43 +212,40 @@ void nuskaitymas(vector<studentas>& grupe, int sarasas) {
         }
         ss >> Studentas.egzaminas;
 
-        double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
+        float galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas1 = galutinis1;
         grupe.push_back(Studentas);
     }
 }
 
-
-void surusiuoti(vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai, const string& pagalRusiuoti) {
+void surusiuoti(list<studentas>& grupe, list<studentas>& vargsiukai, list<studentas>& galvociai, const string& pagalRusiuoti) {
     if (pagalRusiuoti == "vardas") {
-        sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+        grupe.sort([](const studentas& a, const studentas& b) {
             return a.vardas < b.vardas;
         });
     } else if (pagalRusiuoti == "pavarde") {
-        sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+        grupe.sort([](const studentas& a, const studentas& b) {
             return a.pavarde < b.pavarde;
         });
     } else if (pagalRusiuoti == "galutinis") {
-        sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+        grupe.sort([](const studentas& a, const studentas& b) {
             return a.rezultatas1 < b.rezultatas1;
         });
     }
+
     for (const auto& a : grupe) {
         if (a.rezultatas1 < 5.0) {
             vargsiukai.push_back(a);
         } else {
             galvociai.push_back(a);
         }
-}}
+    }
+}
 
-
-
-
-
-void isvedimas(const vector<studentas>& grupe, const string& failas) {
-    ofstream output(failas);
+void isvedimas(const list<studentas>& grupe, const string& filename) {
+    ofstream output(filename);
     if (!output.is_open()) {
-        cerr << "Failed to open output file: " << failas << endl;
+        cerr << "Failed to open output file: " << filename << endl;
         return;
     }
 
@@ -258,12 +255,9 @@ void isvedimas(const vector<studentas>& grupe, const string& failas) {
     for (const auto& a : grupe) {
         output << left << setw(20) << a.vardas << setw(20) << a.pavarde;
         output << fixed << setprecision(2) << setw(15) << a.rezultatas1 << endl;
-
     }
     output.close();
 }
-
-
 
 void studFailas(int sarasas) {
     int numeris = 1;
@@ -294,6 +288,8 @@ void studFailas(int sarasas) {
     kuriamasFailas.close();
 }
 
+
+
 void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, int testsk, int sarasas) {
     laikas1 /= testsk;
     laikas2 /= testsk;
@@ -308,3 +304,6 @@ void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laika
     cout << sarasas << " irasu testo vidutinis laikas: " << fixed << setprecision(2) << (laikas2) << " s\n";
     cout << "\n";
 }
+
+
+
