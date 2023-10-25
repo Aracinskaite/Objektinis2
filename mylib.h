@@ -49,7 +49,6 @@ void studFailas(int sarasas);
 void nuskaitymas(list<studentas>& grupe, int sarasas);
 void isvedimas(const list<studentas>& grupe, const string& filename);
 void surusiuoti(list<studentas>& grupe, list<studentas>& vargsiukai, list<studentas>& galvociai, const string& pagalRusiuoti);
-studentas GeneruotiStudentai(int& numeris);
 void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, int testsk, int sarasas);
 
 #endif;

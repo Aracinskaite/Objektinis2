@@ -69,6 +69,8 @@ int main() {
                 vargsiukai.clear();
                 galvociai.clear();
 
+
+
                 Timer2 t2;
                 Timer1 t1;
                 nuskaitymas(grupe, i);
