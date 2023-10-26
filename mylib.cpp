@@ -35,17 +35,16 @@ double medianossk(const list<int>& pazymiai) {
 
 void generuoti(studentas &Studentas) {
     int ndskaicius = rand() % 11;
-
     cout << "Pazymiai: ";
     for (int i = 0; i < ndskaicius; i++) {
         int pazymys = rand() % 11;
-        cout << pazymys << " ";
+        cout << pazymys<< " ";
         Studentas.pazymiai.push_back(pazymys);
     }
     cout << endl;
-
     Studentas.egzaminas = rand() % 11;
-    cout << "Egzamino pazymys: " << Studentas.egzaminas << endl;
+    cout << "Egzamino pazymys: "<< Studentas.egzaminas<<endl;
+
 }
 
 
