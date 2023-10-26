@@ -25,14 +25,15 @@ int main() {
         vector<studentas> grupe;
         vector<studentas> vargsiukai;
         vector<studentas> galvociai;
-        int skaicius;
 
-        cout << "Jei norite galutini bala skaiciuoti pagal mediana rasykite 1, jei norite pagal vidurki rasykite 2: ";
-        while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
+
+        int generavimas;
+        cout << "Jei norite dirbti su sugeneruotais failais, rasykite 1, jei norite is naujo sugeneruoti, rasykite 2: ";
+        while (!(cin >> generavimas) || (generavimas != 1 && generavimas != 2)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio: ";
-        }
+            cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu: ";
+            }
 
         int testsk;
         cout << "Kiek kartu noresite daryti laiko testavaima: ";
@@ -41,6 +42,9 @@ int main() {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Klaida: ivestas ne skaicius. Iveskite kiek kartu noresite daryti laiko testavaima : ";
         }
+        string pagalRusiuoti;
+        cout << "Ivesk pagal ka nori rusiuot ('vardas' - varda, 'pavarde' - pavarde, 'galutinis' - galutini bala): ";
+        cin >> pagalRusiuoti;
 
         for (int i = 0; i < sarasas.size(); i++) {
             cout << "\n";
@@ -55,9 +59,10 @@ int main() {
             double laikas4 = 0.0;
             double laikas5 = 0.0;
 
-            Timer t;
-            studFailas(sarasas[i]);
-            double z = t.elapsed();
+            if (generavimas == 2) {
+                studFailas(sarasas[i]);
+            }
+
 
             for (int j = 0; j < testsk; j++) {
                 grupe.clear();
@@ -71,24 +76,24 @@ int main() {
                 laikas1 += z1;
 
                 Timer1 t3;
-                surusiuoti(grupe, vargsiukai, galvociai);
+                surusiuoti(grupe, vargsiukai, galvociai,pagalRusiuoti);
                 double z3 = t3.elapsed();
                 laikas3 += z3;
 
                 Timer4 t4;
-                isvedimas(vargsiukai, "vargsiukai_" + to_string(sarasas[i]) + "."+ to_string(j) + ".txt", skaicius);
+                isvedimas(vargsiukai, "vargsiukai_" + to_string(sarasas[i]) + "."+ to_string(j) + ".txt");
                 double z4 = t4.elapsed();
                 laikas4 += z4;
 
                 Timer5 t5;
-                isvedimas(galvociai, "galvociai_" + to_string(sarasas[i]) + + "."+ to_string(j) + ".txt", skaicius);
+                isvedimas(galvociai, "galvociai_" + to_string(sarasas[i]) + + "."+ to_string(j) + ".txt");
                 double z5 = t5.elapsed();
                 laikas5 += z5;
 
                 double z2 = t2.elapsed();
                 laikas2 += z2;
             }
-            isvedimasLaiko(laikas1, laikas2, laikas3, laikas4, laikas5, z, testsk, sarasas[i]);
+            isvedimasLaiko(laikas1, laikas2, laikas3, laikas4, laikas5,  testsk, sarasas[i]);
         }
     }
     system("pause");

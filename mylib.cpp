@@ -39,6 +39,7 @@ void generuoti(studentas &Studentas) {
 
 }
 
+
 void mano_funkcija1() {
     string failopavadinimas;
     cout << "Iveskite  savo failo pavadinima:";
@@ -95,17 +96,33 @@ void mano_funkcija1() {
 
 void mano_funkcija(){
     int studsk;
-    cout << "Iveskite studentu skaiciu: ";
-    while (!(cin >> studsk)) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Klaida: ivestas ne skaicius. Prasome dar karta ivesti studentu skaiciu." << endl;
+    while (true) {
+        try {
+            cout << "Iveskite studentu skaiciu: ";
+            cin >> studsk;
+            if (cin.fail()) {
+                throw invalid_argument("Klaida: ivestas ne skaicius.");
+            }
+            break;
+        } catch (const invalid_argument &e) {
+            cout << e.what() << " Prasome dar karta ivesti studentu skaiciu." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
     }
-    studentas Studentas;
     vector<studentas> grupe;
+    vector<void*> adresas;
+
+
     for (int j = 0; j < studsk; j++) {
+        studentas Studentas;
+
         cout << "Ivesk varda ir pavarde: ";
         cin >> Studentas.vardas >> Studentas.pavarde;
+
+        void* adres = &Studentas;
+        adresas.push_back(adres);
+
         int ivedimas;
         cout << "Jei norite ivesti pazymius, rasykite 1, jei norite, kad sugeneruotu, rasykite 2: ";
         while (true) {
@@ -114,7 +131,7 @@ void mano_funkcija(){
             } else {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prağome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
+                cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. PraÃ°ome dar karta ivesti skaiciu 1 - jei norite ivesti pazymius, 2 - jei norite, kad sugeneruotu: " << endl;
             }
         }
         if (ivedimas == 1) {
@@ -149,6 +166,15 @@ void mano_funkcija(){
         grupe.push_back(Studentas);
         Studentas.pazymiai.clear();
     }
+
+    sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+        if (a.vardas != b.vardas) {
+            return a.vardas < b.vardas;
+        } else {
+            return a.pavarde < b.pavarde;
+        }
+    });
+
     int skaicius;
     cout << "Jei norite galutini bala skaiciuti pagal mediana rasykite 1, jei norite pagal vidurki rasykite 2:";
     while (!(cin >> skaicius) || (skaicius != 1 && skaicius != 2)) {
@@ -157,23 +183,23 @@ void mano_funkcija(){
         cout << "Klaida: ivestas ne skaicius arba ne 1 ir ne 2. Prasome dar karta ivesti skaiciu 1 - galutinis skaiciuojams nuo medianos, 2 - galutinis skaiciuojamas nuo vidurkio" << endl;
     }
     if (skaicius == 1) {
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)" << endl;
+        cout << left << setw(20) << "Adresas" << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)" << endl;
     } else if (skaicius == 2) {
-        cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)" << endl;
+        cout << left << setw(20) << "Adresas" << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)" << endl;
     }
 
-    cout << string(55, '-') << endl;
+    cout << string(75, '-') << endl;
 
+    auto adresas1 = adresas.begin();
     for (const auto& a : grupe) {
-        cout << left << setw(20) << a.vardas << setw(20) << a.pavarde;
+        cout << left << setw(20) << *adresas1 << setw(20) << a.vardas << setw(20) << a.pavarde;
         if (skaicius == 1) {
             cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
         } else if (skaicius == 2) {
             cout << fixed << setprecision(2) << setw(15) << a.rezultatas1 << endl;
         }
-    }
-
-}
+    ++adresas1;
+}}
 
 void nuskaitymas(vector<studentas>& grupe, int sarasas) {
     string failopavadinimas = std::to_string(sarasas) + ".txt";
@@ -203,8 +229,6 @@ void nuskaitymas(vector<studentas>& grupe, int sarasas) {
         }
         ss >> Studentas.egzaminas;
 
-        double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
-        Studentas.rezultatas = galutinis;
         double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas1 = galutinis1;
         grupe.push_back(Studentas);
@@ -212,9 +236,22 @@ void nuskaitymas(vector<studentas>& grupe, int sarasas) {
 }
 
 
-void surusiuoti(const vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai) {
+void surusiuoti(vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai, const string& pagalRusiuoti) {
+    if (pagalRusiuoti == "vardas") {
+        sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+            return a.vardas < b.vardas;
+        });
+    } else if (pagalRusiuoti == "pavarde") {
+        sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+            return a.pavarde < b.pavarde;
+        });
+    } else if (pagalRusiuoti == "galutinis") {
+        sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+            return a.rezultatas1 < b.rezultatas1;
+        });
+    }
     for (const auto& a : grupe) {
-        if (a.rezultatas < 5.0) {
+        if (a.rezultatas1 < 5.0) {
             vargsiukai.push_back(a);
         } else {
             galvociai.push_back(a);
@@ -225,28 +262,20 @@ void surusiuoti(const vector<studentas>& grupe, vector<studentas>& vargsiukai, v
 
 
 
-void isvedimas(const vector<studentas>& grupe, const string& failas, int skaicius) {
+void isvedimas(const vector<studentas>& grupe, const string& failas) {
     ofstream output(failas);
     if (!output.is_open()) {
         cerr << "Failed to open output file: " << failas << endl;
         return;
     }
 
-    if (skaicius == 1) {
-        output << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Med.)" << endl;
-    } else if (skaicius == 2) {
-        output << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)" << endl;
-    }
-
+    output << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(15) << "Galutinis (Vid.)" << endl;
     output << string(55, '-') << endl;
 
     for (const auto& a : grupe) {
         output << left << setw(20) << a.vardas << setw(20) << a.pavarde;
-        if (skaicius == 1) {
-            output << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
-        } else if (skaicius == 2) {
-            output << fixed << setprecision(2) << setw(15) << a.rezultatas1 << endl;
-        }
+        output << fixed << setprecision(2) << setw(15) << a.rezultatas1 << endl;
+
     }
     output.close();
 }
@@ -282,14 +311,13 @@ void studFailas(int sarasas) {
     kuriamasFailas.close();
 }
 
-void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, double z, int testsk, int sarasas) {
+void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, int testsk, int sarasas) {
     laikas1 /= testsk;
     laikas2 /= testsk;
     laikas3 /= testsk;
     laikas4 /= testsk;
     laikas5 /= testsk;
 
-    cout << sarasas << " studentu sugeneruoti uztruko: " << fixed << setprecision(2) << (z) << " s\n";
     cout << sarasas << " studentu nuskaityti vidutiniskai uztruko: " << fixed << setprecision(2) << (laikas1) << " s\n";
     cout << sarasas << " studentu dalijimas i dvi grupes vidutinis laikas: " << fixed << setprecision(2) << (laikas3) << " s\n";
     cout << sarasas << " irasu 'vargsiukai' irasymo i faila vidutinis laikas: " << fixed << setprecision(2) << (laikas4) << " s\n";
@@ -297,6 +325,3 @@ void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laika
     cout << sarasas << " irasu testo vidutinis laikas: " << fixed << setprecision(2) << (laikas2) << " s\n";
     cout << "\n";
 }
-
-
-

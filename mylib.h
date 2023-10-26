@@ -30,6 +30,7 @@ using std::numeric_limits;
 using std::streamsize;
 using std::cerr;
 using std::ofstream;
+using std::invalid_argument;
 
 struct studentas {
     string vardas, pavarde;
@@ -44,9 +45,10 @@ void mano_funkcija1();
 
 void studFailas(int sarasas);
 void nuskaitymas(vector<studentas>& grupe, int sarasas);
-void isvedimas(const vector<studentas>& grupe, const string& filename, int skaicius);
-void surusiuoti(const vector<studentas>& grupe,  vector<studentas>& vargsiukai, vector<studentas>& galvociai);
+void isvedimas(const vector<studentas>& grupe, const string& filename);
+void surusiuoti(vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai, const string& pagalRusiuoti);
 studentas GeneruotiStudentai(int& numeris) ;
-void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, double z, int testsk, int sarasas);
+void isvedimasLaiko(double laikas1, double laikas2, double laikas3, double laikas4, double laikas5, int testsk, int sarasas);
 
 #endif;
+
