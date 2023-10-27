@@ -1,7 +1,7 @@
 #include "mylib.h"
 #include "timer.h"
 
-double vidurkiosk(const list<int>& pazymiai) {
+double vidurkiosk(const vector<int>& pazymiai) {
     assert(!pazymiai.empty());
     int dydis = pazymiai.size();
     int sum = 0;
@@ -11,25 +11,17 @@ double vidurkiosk(const list<int>& pazymiai) {
     return static_cast<double>(sum) / dydis;
 }
 
-double medianossk(const list<int>& pazymiai) {
+double medianossk(const vector<int>& pazymiai) {
     assert(!pazymiai.empty());
-    list<int> surusiuota(pazymiai);
-    surusiuota.sort();
+    vector<int> surusiuota = pazymiai;
+    sort(surusiuota.begin(), surusiuota.end());
     int dydis = surusiuota.size();
     if (dydis % 2 == 0) {
-        auto rus1 = surusiuota.begin();
-        advance(rus1, dydis / 2 - 1);
-        int vidur1 = *rus1;
-
-        auto rus2 = surusiuota.begin();
-        advance(rus2, dydis / 2);
-        int vidur2 = *rus2;
-
-        return static_cast<double>(vidur1 + vidur2) / 2.0;
+        int vid1 = surusiuota[dydis / 2 - 1];
+        int vid2 = surusiuota[dydis / 2];
+        return static_cast<double>(vid1 + vid2) / 2.0;
     } else {
-        auto rus = surusiuota.begin();
-        advance(rus, dydis / 2);
-        return static_cast<double>(*rus);
+        return static_cast<double>(surusiuota[dydis / 2]);
     }
 }
 
@@ -85,10 +77,9 @@ void mano_funkcija1() {
         }
         ss >> Studentas.egzaminas;
 
-        double galutinis = 0.4 * medianossk(list<int>(Studentas.pazymiai.begin(), Studentas.pazymiai.end())) + 0.6 * Studentas.egzaminas;
+        double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas = galutinis;
-
-        double galutinis1 = 0.4 * vidurkiosk(list<int>(Studentas.pazymiai.begin(), Studentas.pazymiai.end())) + 0.6 * Studentas.egzaminas;
+        double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas1 = galutinis1;
 
         grupe.push_back(Studentas);
@@ -181,9 +172,9 @@ void mano_funkcija() {
 
         }
 
-        double galutinis = 0.4 * medianossk(list<int>(Studentas.pazymiai.begin(), Studentas.pazymiai.end())) + 0.6 * Studentas.egzaminas;
+        double galutinis = 0.4 * medianossk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas = galutinis;
-        double galutinis1 = 0.4 * vidurkiosk(list<int>(Studentas.pazymiai.begin(), Studentas.pazymiai.end())) + 0.6 * Studentas.egzaminas;
+        double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas1 = galutinis1;
         grupe.push_back(Studentas);
         Studentas.pazymiai.clear();
@@ -255,8 +246,7 @@ void nuskaitymas(list<studentas>& grupe, int sarasas) {
             }
         }
         ss >> Studentas.egzaminas;
-
-        float galutinis1 = 0.4 * vidurkiosk(list<int>(Studentas.pazymiai.begin(), Studentas.pazymiai.end())) + 0.6 * Studentas.egzaminas;
+        double galutinis1 = 0.4 * vidurkiosk(Studentas.pazymiai) + 0.6 * Studentas.egzaminas;
         Studentas.rezultatas1 = galutinis1;
         grupe.push_back(Studentas);
     }
