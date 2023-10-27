@@ -21,4 +21,28 @@ Laiko skaičiavimas:
 
 
 
+# v0.3
+
+*v0.3* kodas išlieka panašus  į *v0.2*, tik vietoje **vector<studentas>** pakeičiu į **list<studentas>** . Laiko matavimimai beveik nesikeičia. Matytumėme didesnius laiko skirtumus, jeigu reikėtų įterpti arba ištrinti studentus, tada *list* veikimo greitis būtų mažesnis nei *vector*.
+Taip pat prie kodo, kai reikia įvesti studentus arba juos nuskaityti ir išvesti į konsole, pridėjau kiekvieno studento adresą.
+
+Laiko skaičiavimas:
+1. **Timer1** - paskaičiuoja funkcijos *nuskaitymas()* vidutinį darbo laiką.
+2. **Timer2** - paskaičiuoja funkcijos *surusiuoti()* vidutinį darbo laiką.
+3. **Timer3** - paskaičiuoja funkcijos *isvedimas()*  vidutinį darbo laiką (vektoriaus vargsiukai išvedimas į failą).
+4. **Timer4** - paskaičiuoja funkcijos *isvedimas()* vidutinį  darbo laiką (vektoriaus galvociai išvedimas į failą).
+5. **Timer5** - paskaičiuoja vidutini darbo laiką nuo funkcijos *studFailas()* iki paskutinio *isvedimas()*.
+
+
+list:                                                                                  
+<img width="437" alt="Screenshot 2023-10-27 102952" src="https://github.com/Aracinskaite/Objektinis1/assets/144428697/456b96d0-813a-4760-8b97-2cd80081979a">
+
+
+vector:
+
+<img width="441" alt="Screenshot 2023-10-27 104626" src="https://github.com/Aracinskaite/Objektinis1/assets/144428697/edf12051-6ff3-4e16-89ab-a8464b5d7873">
+
+
+
+
 
