@@ -111,17 +111,12 @@ void mano_funkcija(){
         }
     }
     vector<studentas> grupe;
-    vector<void*> adresas;
-
 
     for (int j = 0; j < studsk; j++) {
         studentas Studentas;
 
         cout << "Ivesk varda ir pavarde: ";
         cin >> Studentas.vardas >> Studentas.pavarde;
-
-        void* adres = &Studentas;
-        adresas.push_back(adres);
 
         int ivedimas;
         cout << "Jei norite ivesti pazymius, rasykite 1, jei norite, kad sugeneruotu, rasykite 2: ";
@@ -190,15 +185,13 @@ void mano_funkcija(){
 
     cout << string(75, '-') << endl;
 
-    auto adresas1 = adresas.begin();
     for (const auto& a : grupe) {
-        cout << left << setw(20) << *adresas1 << setw(20) << a.vardas << setw(20) << a.pavarde;
+        cout << left << setw(20) << &a << setw(20) << a.vardas << setw(20) << a.pavarde;
         if (skaicius == 1) {
             cout << fixed << setprecision(2) << setw(15) << a.rezultatas << endl;
         } else if (skaicius == 2) {
             cout << fixed << setprecision(2) << setw(15) << a.rezultatas1 << endl;
         }
-    ++adresas1;
 }}
 
 void nuskaitymas(vector<studentas>& grupe, int sarasas) {
