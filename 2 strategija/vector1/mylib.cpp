@@ -243,12 +243,12 @@ void surusiuoti(vector<studentas>& grupe, vector<studentas>& vargsiukai, const s
         });
     }
 
-    for (auto it = grupe.begin(); it != grupe.end();) {
-        if (it->rezultatas1 < 5.0) {
-            vargsiukai.push_back(*it);
-            it = grupe.erase(it);
+    for (auto a = grupe.begin(); a != grupe.end();) {
+        if (a->rezultatas1 < 5.0) {
+            vargsiukai.push_back(*a);
+            a = grupe.erase(a);
         } else {
-            ++it;
+            ++a;
         }
     }
 }
