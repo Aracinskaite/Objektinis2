@@ -45,4 +45,45 @@ vector:
 
 
 
+# v1.0
+
+*v1.0* turime tris strategijas, kiekviena iš jų skirasi savo konteinerio (***vector*** arba ***list***) dalijimu į dvi grupes. Todėl aptarsiu kiekvienos strategijos dalijimo į tas grupes veikimą.
+Apie programos veikimo principa skaityti *v0.1*, *v0.2* ir *v0.3* .
+
+**1.** **Strategija.** Iš lentelės matome, kad konteinerių laikai nelabai skiriasi.
+   |Tekstiniai failai|Skaidymo laikas į du koneteinersiu (vector)|Skaidymo laikas į du koneteinersiu (list)|
+   |---------------|---------------|---------------|
+   |1000.txt|0.00 s.|0.00 s.|
+   |10000.txt|0.02 s.|0.02 s.|
+   |100000.txt|0.28 s.|0.21 s.|
+   |1000000.txt|2.94 s.|2.10 s.|
+   |10000000.txt|31.94 s.|21.67 s.|
+
+**2. Strategija.** Konteineris list veikia žymiai greičiau, nes vector konteineris yra greitas tik tada, kai norime pasiekti bet kokį elementą, tačiau dirba lėtai jei norime įterpti arba ištrinti elementą. (Dėl vector lėto veikimo su šita strategija nebesulaukiau kol suskirstis du paskutinius failus).
+   |Tekstiniai failai|Skaidymo laikas į du koneteinersiu (vector)|Skaidymo laikas į du koneteinersiu (list)|
+   |---------------|---------------|---------------|
+   |1000.txt|0.03 s.|0.00 s.|
+   |10000.txt|3.04 s.|0.00 s.|
+   |100000.txt|306.26 s.|0.09 s.|
+   |1000000.txt|...|1.34 s.|
+   |10000000.txt|...|18.14 s.|
+
+**3. Strategija.** Šiai strategijai naudojau vector programą iš 1 strategijos, nes ji veikė greičiau nei 2. Iš pasiūlitų algortimu panaudojau : partition, copy. Lentelėje pateikiau palyginimą su panaudotais algoritmais ir su programa iš 1 strategijos, kad galėtume pažiūrėti ar programos veikimas pagreitėjo. Matome, kad didėjant failo dydžiui veikimo greitis vis labiau skiriasi.
+   |Tekstiniai failai|Skaidymo laikas į du koneteinersiu (iš 1 stra.)|Skaidymo laikas į du koneteinersiu (su algoritmais)|
+   |---------------|---------------|---------------|
+   |1000.txt|0.00 s.|0.00 s.|
+   |10000.txt|0.02 s.|0.02 s.|
+   |100000.txt|0.28 s.|0.17 s.|
+   |1000000.txt|2.94 s.|2.06 s.|
+   |10000000.txt|31.94 s.|24.47 s.|   
+
+
+***Cmake naudojimosi instrukcija:***
+1. Parsisiunčiame tekstinį failą *CMakeLists.txt*, aplankus *src*, *Include* ir *RUNfile.bat* .
+2. Parsiųstus failus sukeliama į vieną aplanką.
+3. Paspaudus ant *RUNfile.bat* programa pasileidžia ir galite su ja dirbti.
+
+
+
+
 
