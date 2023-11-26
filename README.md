@@ -107,7 +107,8 @@ Klasės:
 |1000000.txt|5.06 s.|1.60 s.|4.26 s.|3.12 s.|
 |10000000.txt|43.23 s.|20.29 s.|43.35 s.|30.84 s.|  
 
-Klasė su **O1** :
+Atlikome analize priklausomai nuo kompiliatoriaus optimizavimo lygio. Rezultatus surašėme į lenteles, pateiktas žemiau.
+**O1** :
 |Tekstiniai failai| Nuskaitymo laikas| Dalijimas į dvi grupes| 'varkšiukai' įrašymas| 'galvočiai' įrašymas|
 |-----------------|------------------|-----------------------|----------------------|---------------------|
 |1000.txt|0.01 s.|0.00 s.|0.00 s.|0.00 s.|
@@ -115,7 +116,8 @@ Klasė su **O1** :
 |100000.txt|0.47 s.|0.12 s.|0.41 s.|0.33 s.|
 |1000000.txt|5.50 s.|1.56 s.|4.34 s.|3.32 s.|
 |10000000.txt|44.19 s.|21.18 s.|45.10 s.|32.42 s.|  
-Klasė su **O2** :
+
+**O2** :
 |Tekstiniai failai| Nuskaitymo laikas| Dalijimas į dvi grupes| 'varkšiukai' įrašymas| 'galvočiai' įrašymas|
 |-----------------|------------------|-----------------------|----------------------|---------------------|
 |1000.txt|0.00 s.|0.00 s.|0.01 s.|0.00 s.|
@@ -123,7 +125,8 @@ Klasė su **O2** :
 |100000.txt|0.40 s.|0.11 s.|0.39 s.|0.37 s.|
 |1000000.txt|5.26 s.|1.56 s.|4.28 s.|3.17 s.|
 |10000000.txt|43.38 s.|19.90 s.|45.74 s.|30.78 s.| 
-Klasė su **O3** :
+
+**O3** :
 |Tekstiniai failai| Nuskaitymo laikas| Dalijimas į dvi grupes| 'varkšiukai' įrašymas| 'galvočiai' įrašymas|
 |-----------------|------------------|-----------------------|----------------------|---------------------|
 |1000.txt|0.02 s.|0.00 s.|0.01 s.|0.00 s.|
