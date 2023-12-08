@@ -51,8 +51,8 @@ Atlikome analize priklausomai nuo kompiliatoriaus optimizavimo lygio. Rezultatus
 # v1.2
 Savo parašytą programą išskaidžiau į tris failus: ***studlib.h***, ***main.cpp***, ***stud.cpp*** ***timer.h***. **stud.cpp** yra aprašytos visos funkcijos (medianos, vidurkio skaičiavimas, atsitiktinai sugeneruoti skaičiai, ir  funkcijos iš main.cpp). **Mylib.h** yra sudėtos reikalingos bibliotekos, studento klasė su operatoriais, seteriais ir geteriais.
 
-Šioje versijoje įdėjau input ir output operatrius, kurie įveda ir nuskaito studento vardą bei pavardę. Į operatoriau įterpiau tik juos, nes galėsiu pritaikyti visoms savo funkcijoms, kurios juos naudoja.
-Taip pat, pritaikiau "Rule of three", kuri susideda iš destruktoriaus, kopijavimo konstruktoriaus ir kopijavimo priskyrimo operatoriaus. Nuotraukoje pateikiu, kaip mano kodas iškviečia destruktoriu ir atspauzdina "Iskviestas destruktorius":
+Šioje versijoje įdėjau *input* ir *output* operatorius, kurie įveda ir nuskaito studento vardą bei pavardę. Į operatoriau įterpiau tik juos, nes galėsiu pritaikyti visoms savo funkcijoms, kurios naudoja vardą ir pavardę.
+Taip pat, pritaikiau *"Rule of three"*, kuri susideda iš destruktoriaus, kopijavimo konstruktoriaus ir kopijavimo priskyrimo operatoriaus. Nuotraukoje pateikiu, kaip mano programos kodas iškviečia destruktorių ir atspauzdina "Iškviestas destruktorius":
 
 <img width="757" alt="Screenshot 2023-12-08 222638" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/8eb0b1fb-8f5d-4e60-af48-97c7f0343f40">
 
