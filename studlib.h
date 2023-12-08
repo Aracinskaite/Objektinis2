@@ -42,14 +42,21 @@ private:
     int egzaminas_;
     float rezultatas_;
     float rezultatas1_;
+    int skaicius;
 
 public:
     Studentas();
     Studentas(const std::string& vardas, const std::string& pavarde, const std::vector<int>& pazymiai, int egzaminas);
 
+    Studentas(const Studentas& other);
+    Studentas& operator=(const Studentas& other);
     ~Studentas();
-    Studentas(const Studentas& other);  // Copy constructor
-    Studentas& operator=(const Studentas& other);  // Copy assignment operator
+
+
+    friend std::istream& operator>>(std::istream& is, Studentas& studentas);
+    friend std::ostream& operator<<(std::ostream& os, const Studentas& studentas);
+
+
 
     void generuoti();
     double vidurkiosk() const;
@@ -78,7 +85,9 @@ public:
     static void mano_funkcija();
 
 
+
 };
+
 
 #endif // MYLIB_H
 

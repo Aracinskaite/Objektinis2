@@ -25,6 +25,23 @@ Studentas::Studentas() : egzaminas_(0), rezultatas_(0.0), rezultatas1_(0.0) {}
 Studentas::Studentas(const std::string& vardas, const std::string& pavarde, const std::vector<int>& pazymiai, int egzaminas)
     : vardas_(vardas), pavarde_(pavarde), pazymiai_(pazymiai), egzaminas_(egzaminas), rezultatas_(0.0), rezultatas1_(0.0) {}
 
+std::istream& operator>>(std::istream& is, Studentas& studentas) {
+    is >> studentas.vardas_ >> studentas.pavarde_;
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const Studentas& studentas) {
+    os << left  << setw(20) << studentas.getVardas() << setw(20) << studentas.getPavarde();
+    return os;
+}
+
+
+
+
+
+
+
+
 void Studentas::generuoti() {
     int ndskaicius = rand() % 11;
     cout << "Generuoti pazymiai: ";
@@ -84,10 +101,7 @@ void Studentas::mano_funkcija1() {
     while (getline(failas, eilute)) {
         Studentas studentas;
         std::stringstream ss(eilute);
-        std::string vardas, pavarde;
-        ss >> vardas >> pavarde;
-        studentas.setVardas(vardas);
-        studentas.setPavarde(pavarde);
+        ss >> studentas;
 
         for (int i = 1; i <= num; i++) {
         int pazymys;
@@ -118,13 +132,11 @@ void Studentas::mano_funkcija1() {
     cout << string(80, '-') << endl;
 
     for (const auto& studentas : grupe) {
-        cout << left << setw(20) << studentas.getVardas() << left << setw(20) << studentas.getPavarde();
+        cout << studentas;
         cout << left << fixed << setprecision(2) << setw(20) << studentas.getRezultatas1();
         cout << left << fixed << setprecision(2) << setw(20) << studentas.getRezultatas() << endl;
     }
 }
-
-
 
 
 void Studentas::mano_funkcija() {
@@ -149,9 +161,7 @@ void Studentas::mano_funkcija() {
 
         cout << "Ivesk varda ir pavarde: ";
         string vardas, pavarde;
-        cin >> vardas >> pavarde;
-        studentas.setVardas(vardas);
-        studentas.setPavarde(pavarde);
+        cin >> studentas;
 
         int ivedimas;
         cout << "Jei norite ivesti pazymius, rasykite 1, jei norite, kad sugeneruotu, rasykite 2: ";
@@ -220,7 +230,7 @@ void Studentas::mano_funkcija() {
     cout << string(75, '-') << endl;
 
     for (const auto& a : grupe) {
-        cout << left << setw(20) << &a << setw(20) << a.getVardas() << setw(20) << a.getPavarde();
+        cout <<setw(20) << &a << a;
         if (skaicius == 1) {
             cout << fixed << setprecision(2) << setw(15) << a.getRezultatas() << endl;
         } else if (skaicius == 2) {
@@ -255,7 +265,7 @@ void Studentas::nuskaitymas(list<Studentas>& grupe, int sarasas) {
     while (getline(failas, eilute)) {
         Studentas studentas;
         stringstream ss(eilute);
-        ss >> studentas.vardas_ >> studentas.pavarde_;
+        ss >> studentas;
 
         for (int i = 1; i < num; i++) {
             int pazymys;
@@ -309,7 +319,7 @@ void Studentas::isvedimas(const list<Studentas>& grupe, const string& failas) {
     output << string(55, '-') << endl;
 
     for (const auto& a : grupe) {
-        output << left << setw(20) << a.getVardas() << setw(20) << a.getPavarde();
+        output << a;
         output << fixed << setprecision(2) << setw(15) << a.getRezultatas1() << endl;
     }
 
