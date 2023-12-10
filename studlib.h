@@ -40,8 +40,19 @@ protected:
     std::string vardas_, pavarde_;
 
 public:
-     ~Zmogus() {}
-     Zmogus(const std::string& vardas, const std::string& pavarde);
+
+    Zmogus() : vardas_(""), pavarde_("") {}
+
+    Zmogus(const std::string& vardas, const std::string& pavarde)
+        : vardas_(vardas), pavarde_(pavarde) {}
+
+    virtual void setVardas(const std::string& vardas) = 0;
+    virtual void setPavarde(const std::string& pavarde) = 0;
+
+    virtual const std::string& getVardas() const = 0;
+    virtual const std::string& getPavarde() const = 0;
+
+    virtual ~Zmogus() = default;
 
 };
 
@@ -55,6 +66,14 @@ protected:
     int skaicius;
 
 public:
+
+    void setVardas(const std::string& vardas) override { vardas_ = vardas; }
+    void setPavarde(const std::string& pavarde) override { pavarde_ = pavarde; }
+
+    const std::string& getVardas() const override { return vardas_; }
+    const std::string& getPavarde() const override { return pavarde_; }
+
+
     Studentas();
     Studentas(const std::vector<int>& pazymiai, int egzaminas);
 
@@ -66,21 +85,17 @@ public:
     friend std::istream& operator>>(std::istream& is, Studentas& studentas);
     friend std::ostream& operator<<(std::ostream& os, const Studentas& studentas);
 
-
-
     void generuoti();
     double vidurkiosk() const;
     double medianossk() const;
 
-    const string& getVardas() const { return vardas_; }
-    const string& getPavarde() const { return pavarde_; }
+
     const vector<int>& getPazymiai() const { return pazymiai_; }
     int getEgzaminas() const { return egzaminas_; }
     float getRezultatas() const { return rezultatas_; }
     float getRezultatas1() const { return rezultatas1_; }
 
-    void setVardas(const string& vardas) { vardas_ = vardas; }
-    void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
+
     void setPazymiai(int pazymys) {pazymiai_.push_back(pazymys);}
     void setEgzaminas(int egzaminas) { egzaminas_ = egzaminas; }
     void setRezultatas(float rezultatas) { rezultatas_ = rezultatas; }
