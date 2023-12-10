@@ -36,15 +36,18 @@ using std::ofstream;
 using std::invalid_argument;
 
 class Zmogus {
+protected:
+    std::string vardas_, pavarde_;
+
 public:
-    virtual ~Zmogus() {}
-    virtual void print() const = 0;
+     ~Zmogus() {}
+     Zmogus(const std::string& vardas, const std::string& pavarde);
+
 };
 
 
-class Studentas {
-private:
-    std::string vardas_, pavarde_;
+class Studentas : public Zmogus {
+protected:
     std::vector<int> pazymiai_;
     int egzaminas_;
     float rezultatas_;
@@ -53,7 +56,7 @@ private:
 
 public:
     Studentas();
-    Studentas(const std::string& vardas, const std::string& pavarde, const std::vector<int>& pazymiai, int egzaminas);
+    Studentas(const std::vector<int>& pazymiai, int egzaminas);
 
     Studentas(const Studentas& other);
     Studentas& operator=(const Studentas& other);
