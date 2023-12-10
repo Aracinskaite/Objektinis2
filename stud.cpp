@@ -1,25 +1,25 @@
 #include "studlib.h"
 #include "timer.h"
 
-Studentas::~Studentas() {};
+Studentas::~Studentas() {}
 
 Studentas::Studentas(const Studentas& other)
-    : vardas_(other.vardas_), pavarde_(other.pavarde_),
-      pazymiai_(other.pazymiai_), egzaminas_(other.egzaminas_),
+    : Zmogus(other), pazymiai_(other.pazymiai_), egzaminas_(other.egzaminas_),
       rezultatas_(other.rezultatas_), rezultatas1_(other.rezultatas1_) {}
 
+
 Studentas& Studentas::operator=(const Studentas& other) {
-    if (this != &other) {
-        vardas_ = other.vardas_;
-        pavarde_ = other.pavarde_;
-        pazymiai_ = other.pazymiai_;
-        egzaminas_ = other.egzaminas_;
-        rezultatas_ = other.rezultatas_;
-        rezultatas1_ = other.rezultatas1_;
+        if (this != &other) {
+            Zmogus::operator=(other);
+            pazymiai_ = other.pazymiai_;
+            egzaminas_ = other.egzaminas_;
+            rezultatas_ = other.rezultatas_;
+            rezultatas1_ = other.rezultatas1_;
+        }
+        return *this;
     }
-    return *this;
-}
-Zmogus:Zmogus (const std::string& vardas, const std::string& pavarde): vardas_(vardas), pavarde_(pavarde){}
+
+Zmogus::Zmogus (const std::string& vardas, const std::string& pavarde): vardas_(vardas), pavarde_(pavarde){}
 
 Studentas::Studentas() : egzaminas_(0), rezultatas_(0.0), rezultatas1_(0.0) {}
 
