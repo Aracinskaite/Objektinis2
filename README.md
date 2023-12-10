@@ -56,3 +56,6 @@ Taip pat, pritaikiau *"Rule of three"*, kuri susideda iš destruktoriaus, kopija
 
 <img width="757" alt="Screenshot 2023-12-08 222638" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/8eb0b1fb-8f5d-4e60-af48-97c7f0343f40">
 
+# v1.5
+<img width="690" alt="Screenshot 2023-12-10 194719" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/482cf0e0-07c6-43cf-afc3-eb5ec2ea184a">
+
