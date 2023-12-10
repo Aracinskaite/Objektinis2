@@ -6,16 +6,24 @@ using namespace std;
 
 int main() {
     int skait;
+    cout << "Demonstracija abstrakcios klases. Rasykite 0." << endl;
     cout << "Jei norite ivesti studentus ir atlikti veiksums. Rasykite 1." << endl;
     cout << "Jei norite nuskaityti studentus. Rasykite 2." << endl;
     cout << "Jei norite norite sugeneruoti failus ir atlikus veiksmus su jais paskaiciuoti vidutini laika. Rasykite 3." << endl;
-    while (!(cin >> skait) || (skait != 1 && skait != 2 && skait != 3)) {
+    while (!(cin >> skait) || (skait != 1 && skait != 0  && skait != 2 && skait != 3)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Klaida: ivestas ne skaicius. Iveskite 1 - jei norite ivesti studentus ir atlikti veiksums , 2 - jei norite nuskaityti studentus rasykite :" << endl;
     }
     if (skait == 1) {
         Studentas::mano_funkcija();
+
+    }else if (skait == 0) {
+        Zmogus a;
+        a.setVardas("John");
+        a.setPavarde("Doe");
+        cout << "Vardas: " << student.getVardas() << ", Pavarde: " << student.getPavarde() << std::endl;
+
     } else if (skait == 2) {
         Studentas::mano_funkcija1();
     } else if  (skait == 3) {

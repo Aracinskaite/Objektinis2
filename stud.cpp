@@ -19,7 +19,6 @@ Studentas& Studentas::operator=(const Studentas& other) {
         return *this;
     }
 
-
 Studentas::Studentas() : egzaminas_(0), rezultatas_(0.0), rezultatas1_(0.0) {}
 
 Studentas::Studentas( const std::vector<int>& pazymiai, int egzaminas)
@@ -46,7 +45,6 @@ void Studentas::generuoti() {
     }
     cout << "\nGeneruotas egzaminas: " << (egzaminas_ = rand() % 11) << endl;
 }
-
 
 
 double Studentas::vidurkiosk() const {
