@@ -1,7 +1,7 @@
 #include "studlib.h"
 #include "timer.h"
 
-Studentas::~Studentas() {}
+Studentas::~Studentas() {};
 
 Studentas::Studentas(const Studentas& other)
     : vardas_(other.vardas_), pavarde_(other.pavarde_),
@@ -19,11 +19,12 @@ Studentas& Studentas::operator=(const Studentas& other) {
     }
     return *this;
 }
+Zmogus:Zmogus (const std::string& vardas, const std::string& pavarde): vardas_(vardas), pavarde_(pavarde){}
 
 Studentas::Studentas() : egzaminas_(0), rezultatas_(0.0), rezultatas1_(0.0) {}
 
-Studentas::Studentas(const std::string& vardas, const std::string& pavarde, const std::vector<int>& pazymiai, int egzaminas)
-    : vardas_(vardas), pavarde_(pavarde), pazymiai_(pazymiai), egzaminas_(egzaminas), rezultatas_(0.0), rezultatas1_(0.0) {}
+Studentas::Studentas( const std::vector<int>& pazymiai, int egzaminas)
+    : pazymiai_(pazymiai), egzaminas_(egzaminas), rezultatas_(0.0), rezultatas1_(0.0) {}
 
 std::istream& operator>>(std::istream& is, Studentas& studentas) {
     is >> studentas.vardas_ >> studentas.pavarde_;
