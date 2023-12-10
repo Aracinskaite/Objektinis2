@@ -40,7 +40,6 @@ protected:
     std::string vardas_, pavarde_;
 
 public:
-
     Zmogus() : vardas_(""), pavarde_("") {}
 
     Zmogus(const std::string& vardas, const std::string& pavarde)
@@ -53,7 +52,6 @@ public:
     virtual const std::string& getPavarde() const = 0;
 
     virtual ~Zmogus() = default;
-
 };
 
 
@@ -67,11 +65,7 @@ protected:
 
 public:
 
-    void setVardas(const std::string& vardas) override { vardas_ = vardas; }
-    void setPavarde(const std::string& pavarde) override { pavarde_ = pavarde; }
 
-    const std::string& getVardas() const override { return vardas_; }
-    const std::string& getPavarde() const override { return pavarde_; }
 
 
     Studentas();
