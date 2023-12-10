@@ -35,6 +35,13 @@ using std::cerr;
 using std::ofstream;
 using std::invalid_argument;
 
+class Zmogus {
+public:
+    virtual ~Zmogus() {}
+    virtual void print() const = 0;
+};
+
+
 class Studentas {
 private:
     std::string vardas_, pavarde_;
