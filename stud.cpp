@@ -19,7 +19,6 @@ Studentas& Studentas::operator=(const Studentas& other) {
         return *this;
     }
 
-Zmogus::Zmogus (const std::string& vardas, const std::string& pavarde): vardas_(vardas), pavarde_(pavarde){}
 
 Studentas::Studentas() : egzaminas_(0), rezultatas_(0.0), rezultatas1_(0.0) {}
 
@@ -35,12 +34,6 @@ std::ostream& operator<<(std::ostream& os, const Studentas& studentas) {
     os << left  << setw(20) << studentas.getVardas() << setw(20) << studentas.getPavarde();
     return os;
 }
-
-
-
-
-
-
 
 
 void Studentas::generuoti() {
