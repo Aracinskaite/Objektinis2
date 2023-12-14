@@ -61,7 +61,7 @@ Savo parašytą programą išskaidžiau į keturi failus: ***studlib.h***, ***ma
 
 Savo programą papildžiau bazine (abstrakčia) klase pavadinimu **Zmogus**. Ją idėjau į savo *studlib.h* failą. *Zmogus* bazinė klasė yra protected kintamieji: vardas, pavardė. Taip pat ten yra jų geteriai ir seteriai, bet objektų kūrimas iš *Zmogus* klasės yra negalimas. Todėl kita mano klasė **Studentas** (ji yra išvestinė klasė iš Zmogus) sukuria juos.
 
-Šioje nuotraukoje galime matyti, jog bazinė klasė *Zmougus* negali sukurti objektų:
+Šioje nuotraukoje galime matyti, jog bazinė klasė *Zmogus* negali sukurti objektų:
 <img width="691" alt="Screenshot 2023-12-15 002932" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/efef99e2-851b-4340-adfe-384f21be4884">
 
 
