@@ -49,7 +49,7 @@ Atlikome analize priklausomai nuo kompiliatoriaus optimizavimo lygio. Rezultatus
 
 
 # v1.2
-Savo parašytą programą išskaidžiau į tris failus: ***studlib.h***, ***main.cpp***, ***stud.cpp*** ***timer.h***. **stud.cpp** yra aprašytos visos funkcijos (medianos, vidurkio skaičiavimas, atsitiktinai sugeneruoti skaičiai, ir  funkcijos iš main.cpp). **Mylib.h** yra sudėtos reikalingos bibliotekos, studento klasė su operatoriais, seteriais ir geteriais.
+Savo parašytą programą išskaidžiau į keturi failus: ***studlib.h***, ***main.cpp***, ***stud.cpp*** ***timer.h***. **stud.cpp** yra aprašytos visos funkcijos (medianos, vidurkio skaičiavimas, atsitiktinai sugeneruoti skaičiai, ir  funkcijos iš main.cpp). **Mylib.h** yra sudėtos reikalingos bibliotekos, studento klasė su operatoriais, seteriais ir geteriais.
 
 Šioje versijoje įdėjau *input* ir *output* operatorius, kurie įveda ir nuskaito studento vardą bei pavardę. Į operatoriau įterpiau tik juos, nes galėsiu pritaikyti visoms savo funkcijoms, kurios naudoja vardą ir pavardę.
 Taip pat, pritaikiau *"Rule of three"*, kuri susideda iš destruktoriaus, kopijavimo konstruktoriaus ir kopijavimo priskyrimo operatoriaus. Nuotraukoje pateikiu, kaip mano programos kodas iškviečia destruktorių ir atspauzdina "Iškviestas destruktorius":
@@ -57,5 +57,11 @@ Taip pat, pritaikiau *"Rule of three"*, kuri susideda iš destruktoriaus, kopija
 <img width="757" alt="Screenshot 2023-12-08 222638" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/8eb0b1fb-8f5d-4e60-af48-97c7f0343f40">
 
 # v1.5
-<img width="690" alt="Screenshot 2023-12-10 194719" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/482cf0e0-07c6-43cf-afc3-eb5ec2ea184a">
+Savo parašytą programą išskaidžiau į keturi failus: ***studlib.h***, ***main.cpp***, ***stud.cpp*** ***timer.h***. **stud.cpp** yra aprašytos visos funkcijos (medianos, vidurkio skaičiavimas, atsitiktinai sugeneruoti skaičiai, ir  funkcijos iš main.cpp). **Mylib.h** yra sudėtos reikalingos bibliotekos, studento klasė su operatoriais, seteriais ir geteriais.
+
+Savo programą papildžiau bazine (abstrakčia) klase pavadinimu **Zmogus**. Ją idėjau į savo *studlib.h* failą. *Zmogus* bazinė klasė yra protected kintamieji: vardas, pavardė. Taip pat ten yra jų geteriai ir seteriai, bet objektų kūrimas iš *Zmogus* klasės yra negalimas. Todėl kita mano klasė **Studentas** (ji yra išvestinė klasė iš Zmogus) sukuria juos.
+
+Šioje nuotraukoje galime matyti, jog bazinė klasė *Zmougus* negali sukurti objektų:
+<img width="691" alt="Screenshot 2023-12-15 002932" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/efef99e2-851b-4340-adfe-384f21be4884">
+
 
