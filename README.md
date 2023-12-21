@@ -65,3 +65,11 @@ Savo programą papildžiau bazine (abstrakčia) klase pavadinimu **Zmogus**. Ją
 <img width="691" alt="Screenshot 2023-12-15 002932" src="https://github.com/Aracinskaite/Objektinis2/assets/144428697/efef99e2-851b-4340-adfe-384f21be4884">
 
 
+# v2.0
+
+Savo parašytą programą išskaidžiau į keturi failus: ***studlib.h***, ***main.cpp***, ***stud.cpp*** ***timer.h***. **stud.cpp** yra aprašytos visos funkcijos (medianos, vidurkio skaičiavimas, atsitiktinai sugeneruoti skaičiai, ir  funkcijos iš main.cpp). **Mylib.h** yra sudėtos reikalingos bibliotekos, studento klasė su operatoriais, seteriais ir geteriais.
+
+Taip pat, prie šios versijos pridėjau failą ***test.cpp***. Jame parašiau du testus, kurie tikrina ar mano funkcijos *vidurkiosk()* ir *medianossk()* veikia teisingai ir skaičiuojant galutinį balą su jomis gaunamas teisingas atsakymas. Testai yra nerealizuoti, bet jeigu juos realizuosime, tai paleidus juos turėtu išvesti ar su mano funkcijomis gaunamas teisingas rezultatas, kuris buvo nurodytas teste.
+
+Dar šiai versijai sukūriau *doxygen* html failą, kurį galime rasti šioje versijoje v2.0 atsidarę aplanką html ir jame suradę failą index.html .
+
